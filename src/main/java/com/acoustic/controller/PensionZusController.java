@@ -22,7 +22,7 @@ import java.util.Map;
 @RequestMapping("/pensionZus")
 @RequiredArgsConstructor
 @Validated
-public class TotalZusController {
+public class PensionZusController {
 
     private final PensionZusRepository pensionZusRepository;
     private final SalaryCalculatorService salaryCalculatorService;

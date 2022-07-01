@@ -34,7 +34,7 @@ class PensionZusControllerTest {
 
     @ParameterizedTest
     @CsvSource({"6000, 585.60", "7000, 683.20", "8555,834.97", "15143.99,1478.05"})
-    public void calculatePensionZus(BigDecimal input, BigDecimal pensionZus) throws Exception {
+    public void calculateDisabilityZus(BigDecimal input, BigDecimal pensionZus) throws Exception {
         var expected = this.objectMapper.writeValueAsString(Map.of("Pension zus", pensionZus));
         this.mockMvc.perform(post(PENSION_ZUS_ENDPOINT + input).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
