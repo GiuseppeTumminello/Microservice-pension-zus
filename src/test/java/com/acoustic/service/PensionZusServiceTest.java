@@ -26,12 +26,12 @@ class PensionZusServiceTest {
 
     @Test
     void getDescription() {
-        assertThat(salaryCalculatorService.getDescription()).isEqualTo("Total zus");
+        assertThat(salaryCalculatorService.getDescription()).isEqualTo("Pension zus");
     }
 
     @ParameterizedTest
-    @CsvSource({"6000, 90.00, 0.0150", "7000, 105.00, 0.0150", "15143.99,227.16, 0.0150"})
-    public void getTotalZus(BigDecimal input, BigDecimal expected, BigDecimal rate) {
+    @CsvSource({"6000, 585.60, 0.0976", "7000, 683.20, 0.0976", "15143.99,1478.05, 0.0976"})
+    public void getPensionZus(BigDecimal input, BigDecimal expected, BigDecimal rate) {
         given(ratesConfigurationProperties.getPensionZusRate()).willReturn(rate);
         assertThat(salaryCalculatorService.apply(input)).isEqualTo(expected);
     }
