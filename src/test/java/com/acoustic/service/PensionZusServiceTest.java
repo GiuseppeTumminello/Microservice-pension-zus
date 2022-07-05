@@ -18,6 +18,7 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith(MockitoExtension.class)
 class PensionZusServiceTest {
 
+    public static final String PENSION_ZUS_DESCRIPTION = "Pension zus";
     @InjectMocks
     private PensionZusService salaryCalculatorService;
 
@@ -26,13 +27,13 @@ class PensionZusServiceTest {
 
     @Test
     void getDescription() {
-        assertThat(salaryCalculatorService.getDescription()).isEqualTo("Pension zus");
+        assertThat(this.salaryCalculatorService.getDescription()).isEqualTo(PENSION_ZUS_DESCRIPTION);
     }
 
     @ParameterizedTest
     @CsvSource({"6000, 585.60, 0.0976", "7000, 683.20, 0.0976", "15143.99,1478.05, 0.0976"})
-    public void getDisabilityZus(BigDecimal input, BigDecimal expected, BigDecimal rate) {
-        given(ratesConfigurationProperties.getPensionZusRate()).willReturn(rate);
-        assertThat(salaryCalculatorService.apply(input)).isEqualTo(expected);
+    public void getPensionZus(BigDecimal input, BigDecimal expected, BigDecimal rate) {
+        given(this.ratesConfigurationProperties.getPensionZusRate()).willReturn(rate);
+        assertThat(this.salaryCalculatorService.apply(input)).isEqualTo(expected);
     }
 }

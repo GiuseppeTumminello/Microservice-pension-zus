@@ -24,18 +24,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class PensionZusControllerTest {
 
+    public static final String DESCRIPTION = "description";
+    public static final String PENSION_ZUS_DESCRIPTION = "Pension zus";
+    public static final String VALUE = "value";
+    private final String PENSION_ZUS_ENDPOINT = "/pensionZus/getPensionZus/";
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
 
-    private final String PENSION_ZUS_ENDPOINT = "/pensionZus/getPensionZus/";
-
-
     @ParameterizedTest
     @CsvSource({"6000, 585.60", "7000, 683.20", "8555,834.97", "15143.99,1478.05"})
-    public void calculateDisabilityZus(BigDecimal input, BigDecimal pensionZus) throws Exception {
-        var expected = this.objectMapper.writeValueAsString(Map.of("Pension zus", pensionZus));
+    public void calculatePensionZus(BigDecimal input, String pensionZus) throws Exception {
+        var expected = this.objectMapper.writeValueAsString(Map.of(DESCRIPTION, PENSION_ZUS_DESCRIPTION, VALUE, pensionZus));
         this.mockMvc.perform(post(PENSION_ZUS_ENDPOINT + input).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(expected));
