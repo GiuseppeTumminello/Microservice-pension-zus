@@ -2,12 +2,12 @@ package com.acoustic.service;
 
 import com.acoustic.rate.RatesConfigurationProperties;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class PensionZusService implements SalaryCalculatorService{
 
@@ -21,6 +21,6 @@ public class PensionZusService implements SalaryCalculatorService{
 
     @Override
     public BigDecimal apply(final BigDecimal grossMonthlySalary) {
-        return grossMonthlySalary.multiply(ratesConfigurationProperties.getPensionZusRate()).setScale(2, RoundingMode.HALF_EVEN);
+        return grossMonthlySalary.multiply(this.ratesConfigurationProperties.getPensionZusRate()).setScale(2, RoundingMode.HALF_EVEN);
     }
 }
