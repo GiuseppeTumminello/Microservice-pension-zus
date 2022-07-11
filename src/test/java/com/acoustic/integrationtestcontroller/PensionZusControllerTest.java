@@ -27,7 +27,7 @@ class PensionZusControllerTest {
     public static final String DESCRIPTION = "description";
     public static final String PENSION_ZUS_DESCRIPTION = "Pension zus";
     public static final String VALUE = "value";
-    private final String PENSION_ZUS_ENDPOINT = "/pensionZus/getPensionZus/";
+    private final String PENSION_ZUS_ENDPOINT = "/pension-zus/calculation/";
     @Autowired
     private MockMvc mockMvc;
     @Autowired

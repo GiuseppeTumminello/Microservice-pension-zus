@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/pensionZus")
+@RequestMapping("/pension-zus")
 @RequiredArgsConstructor
 @Validated
 @CrossOrigin
@@ -26,7 +26,7 @@ public class PensionZusController {
     private final SalaryCalculatorService salaryCalculatorService;
 
 
-    @PostMapping("/getPensionZus/{grossMonthlySalary}")
+    @PostMapping("/calculation/{grossMonthlySalary}")
     public Map<String, String> calculatePensionZus(@PathVariable @Min(2000) BigDecimal grossMonthlySalary) {
         var pensionZus = this.salaryCalculatorService.apply(grossMonthlySalary);
         this.pensionZusRepository.save(PensionZus.builder().pensionZusAmount(pensionZus).build());
